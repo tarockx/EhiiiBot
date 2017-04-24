@@ -4,20 +4,29 @@ using System;
 
 namespace EhiiiBot
 {
+    /// <summary>
+    /// Un basilare wrapper intorno alla libreria SlackAPI che implementa un semplice Bot slack.
+    /// Il Bot risponde ad ogni messaggio ricevuto con il testo indicato dalla property ReplyTemplate
+    /// </summary>
     public class Bot
     {
-        public string Token { get; set; }
-        public string ReplyTemplate { get; set; }
+        private string Token { get; set; } //Token di autenticazione del Bot
+        private string ReplyTemplate { get; set; } //Messaggio di risposta del Bot
 
         public SlackSocketClient SlackClient  { get; private set; }
 
-        //Eventi
+        //Eventi per comunicazione con la UI
         public event Action Connected;
         public event Action<string> ConnectionFailed;
         public event Action<NewMessage> NewMessage;
         public event Action<MessageReceived> ReplyReceived;
         public event Action Disconnected;
 
+        /// <summary>
+        /// Costruisce una nuova istanza del Bot
+        /// </summary>
+        /// <param name="token">Il token di autenticazione del Bot. Questo token è reperibile nella pagina di configurazione del Bot sul sito Slack</param>
+        /// <param name="replyTemplate">La risposta da inviare ad ogni messaggio ricevuto</param>
         public Bot(string token, string replyTemplate)
         {
             Token = token;
