@@ -52,7 +52,8 @@ namespace EhiiiBot
 
                     //Rispondo
                     SlackClient.SendMessage(
-                        (received) => {
+                        (received) =>
+                        {
                             //Il messaggio di risposta è stato ricevuto
                             ReplyReceived?.Invoke(received);
                         },

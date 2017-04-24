@@ -99,7 +99,7 @@ namespace EhiiiBot
 
         private void Bot_ReplyReceived(SlackAPI.WebSocketMessages.MessageReceived obj)
         {
-            PostToLog("Message " + obj.reply_to + " has been received by the user");
+            PostToLog("Reply has been received by the user");
         }
 
         private void Bot_NewMessage(SlackAPI.WebSocketMessages.NewMessage obj)
