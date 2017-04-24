@@ -31,7 +31,6 @@ namespace EhiiiBot
         
         public MainWindow()
         {
-            Token = "xoxb-172006014946-twn63awQ6yXjPjfvThngE4TY";
             ReplyTemplate = "Ehiii!";
             InitializeComponent();
 
