@@ -5,7 +5,7 @@ using System.Windows;
 namespace EhiiiBot
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// La finestra principale del programma
     /// </summary>
     public partial class MainWindow : Window
     {
