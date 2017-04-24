@@ -1,0 +1,52 @@
+﻿<Window x:Class="EhiiiBot.MainWindow" x:Name="mw"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EhiiiBot"
+        mc:Ignorable="d"
+        Title="EhiiBot!" Width="550" Height="400">
+    <Window.Resources>
+        <local:BooleanInverter x:Key="booleanInverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" TextAlignment="Center" TextWrapping="Wrap" Margin="2">
+            <Bold FontSize="18">EhiiBot!</Bold>
+            <LineBreak/>
+            <Italic FontSize="10">Unregistered version - per l'attivazione preparate 10k in contanti, chiamate 1-800-LAPO e seguite le istruzioni</Italic>
+        </TextBlock>
+
+        <GroupBox Grid.Row="1" Header="Parameters" Margin="2">
+            <Grid IsEnabled="{Binding ElementName=mw, Path=BotRunning, Converter={StaticResource booleanInverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Margin="2">Bot Token:</TextBlock>
+                <TextBox Grid.Column="1" Margin="2" Text="{Binding ElementName=mw, Path=Token}"></TextBox>
+                <TextBlock Grid.Column="2" Margin="2">Message:</TextBlock>
+                <TextBox Grid.Column="3" Margin="2" Text="{Binding ElementName=mw, Path=ReplyTemplate}"></TextBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="Log" Margin="2">
+            <TextBox VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" Margin="2" Text="{Binding ElementName=mw, Path=LogMessage}"></TextBox>
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="2 20 2 2">
+            <Button x:Name="btnStartBot" Click="btnStartBot_Click" Margin="2" Width="150" Height="30" Foreground="Green" FontWeight="Bold" IsEnabled="{Binding ElementName=mw, Path=BotRunning, Converter={StaticResource booleanInverter}}">Start bot</Button>
+            <Button x:Name="btnStopBot" Click="btnStopBot_Click" Margin="2" Width="150" Height="30" Foreground="Red" FontWeight="Bold" IsEnabled="{Binding ElementName=mw, Path=BotRunning}">Stop bot</Button>
+        </StackPanel>
+    </Grid>
+</Window>
